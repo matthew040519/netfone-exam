@@ -1,0 +1,33 @@
+#import auth.graphql
+type Query{
+  users: [User] @all
+  user(id: ID @eq): User @find
+
+  viewContact(id: ID @eq): Contacts @find
+  listContact: [Contacts] @all
+
+}
+
+type User{
+  id: ID!
+  name: String!
+  email: String!
+}
+
+type Contacts{
+  id: ID,
+  name: String,
+  contact_no: Int,
+}
+
+type Mutation{
+  createContact(name: String!, contact_no: Int!): Contacts! @create
+
+  updateContact(id: ID!, name: String, contact_no: Int): Contacts! @update
+
+  deleteContact(id: ID! @whereKey): Contacts! @delete
+
+}
+
+
+

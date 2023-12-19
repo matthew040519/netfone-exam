@@ -2,6 +2,15 @@ extend type Mutation{
     login(email: String!, password: String!): String!
 }
 
-extend type Query {
-    me: User! @guard @auth
+extend type Query @guard @auth {
+    listContact: [Contacts] @all
+}
+
+extend type Mutation @guard @auth{
+  createContact(name: String!, contact_no: Int!): Contacts! @create 
+
+  updateContact(id: ID!, name: String, contact_no: Int): Contacts! @update
+
+  deleteContact(id: ID! @whereKey): Contacts! @delete
+
 }

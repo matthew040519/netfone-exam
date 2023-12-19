@@ -4,7 +4,7 @@ type Query{
   user(id: ID @eq): User @find
 
   viewContact(id: ID @eq): Contacts @find
-  listContact: [Contacts] @all
+  # listContact: [Contacts] @guard @auth @all
 
 }
 
@@ -20,14 +20,7 @@ type Contacts{
   contact_no: Int,
 }
 
-type Mutation{
-  createContact(name: String!, contact_no: Int!): Contacts! @create
 
-  updateContact(id: ID!, name: String, contact_no: Int): Contacts! @update
-
-  deleteContact(id: ID! @whereKey): Contacts! @delete
-
-}
 
 
 
